@@ -29,17 +29,11 @@ function dataTable(id, nomObjet) {
 
 $(document).ready(function() {
     dataTable("#table_utilisateur", "Utilisateur");
-    dataTable("#table_typeCE", "Type");
-    dataTable("#table_zoneImpCE", "Zone");
-    dataTable("#table_indicateurBase", "Indicateur");
-    dataTable("#table_indicateur", "Indicateur");
-    dataTable("#table_region", "Region");
-    dataTable("#table_departement", "Departement");
-    dataTable("#table_commune", "Commune");
-    dataTable("#table_centre", "Centre");
-    dataTable("#table_faitec", "Donnée");
-    dataTable("#tableau_bord_region", "Donnée");
-    dataTable("#tableau_bord_departement", "Donnée");
-    dataTable("#tableau_bord_commune", "Donnée");
-    dataTable("#tableau_bord_centre", "Donnée");
+    dataTable("#table_visite", "Visite");
+    dataTable("#table_mesvisite", "Visite");
+    dataTable("#table_service", "Service");
+    dataTable("#table_visiteur", "Visiteur");
+    dataTable("#table_crer", "Visite");
+    dataTable("#table_fermer", "Visite");
+    
 });

@@ -4,6 +4,9 @@ namespace App\Form;
 
 use App\Entity\Visiteur;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\IntegerType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -14,12 +17,9 @@ class VisiteurFormType extends AbstractType
         $builder
             ->add('nomVisiteur')
             ->add('prenomVisiteur')
-            ->add('pieceVisiteur')
+            ->add('matricule')
             ->add('adreeseVisiteur')
-            ->add('profession')
-            ->add('datenais')
-            ->add('typeVisite')
-            ->add('telVisiteur')
+            ->add('telVisiteur', IntegerType::class)
         ;
     }
 

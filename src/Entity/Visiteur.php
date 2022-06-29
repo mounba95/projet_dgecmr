@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\VisiteurRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -30,22 +32,29 @@ class Visiteur
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $pieceVisiteur;
-
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
     private $adreeseVisiteur;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="integer", length=255, unique=true)
      */
-    private $profession;
+    private $telVisiteur;
 
     /**
-     * @ORM\Column(type="date")
+     * @ORM\Column(type="string", length=255, unique=true)
      */
-    private $datenais;
+    private $matricule;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Visite::class, mappedBy="visiteurs")
+     */
+    private $visites;
+
+    public function __construct()
+    {
+        $this->visites = new ArrayCollection();
+    }
+
+
 
     public function getId(): ?int
     {
@@ -76,17 +85,6 @@ class Visiteur
         return $this;
     }
 
-    public function getPieceVisiteur(): ?string
-    {
-        return $this->pieceVisiteur;
-    }
-
-    public function setPieceVisiteur(string $pieceVisiteur): self
-    {
-        $this->pieceVisiteur = $pieceVisiteur;
-
-        return $this;
-    }
 
     public function getAdreeseVisiteur(): ?string
     {
@@ -100,27 +98,70 @@ class Visiteur
         return $this;
     }
 
-    public function getProfession(): ?string
+    public function getTelVisiteur(): ?string
     {
-        return $this->profession;
+        return $this->telVisiteur;
     }
 
-    public function setProfession(string $profession): self
+    public function setTelVisiteur(string $telVisiteur): self
     {
-        $this->profession = $profession;
+        $this->telVisiteur = $telVisiteur;
 
         return $this;
     }
 
-    public function getDatenais(): ?\DateTimeInterface
+    public function getMatricule(): ?string
     {
-        return $this->datenais;
+        return $this->matricule;
     }
 
-    public function setDatenais(\DateTimeInterface $datenais): self
+    public function setMatricule(string $matricule): self
     {
-        $this->datenais = $datenais;
+        $this->matricule = $matricule;
 
         return $this;
     }
+
+
+
+    /**
+     * generates a string
+     *
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->nomVisiteur.' '.$this->prenomVisiteur.' '.$this->telVisiteur;
+    }
+
+    /**
+     * @return Collection|Visite[]
+     */
+    public function getVisites(): Collection
+    {
+        return $this->visites;
+    }
+
+    public function addVisite(Visite $visite): self
+    {
+        if (!$this->visites->contains($visite)) {
+            $this->visites[] = $visite;
+            $visite->setVisiteurs($this);
+        }
+
+        return $this;
+    }
+
+    public function removeVisite(Visite $visite): self
+    {
+        if ($this->visites->removeElement($visite)) {
+            // set the owning side to null (unless already changed)
+            if ($visite->getVisiteurs() === $this) {
+                $visite->setVisiteurs(null);
+            }
+        }
+
+        return $this;
+    }
+
 }

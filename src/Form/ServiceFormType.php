@@ -14,6 +14,7 @@ class ServiceFormType extends AbstractType
         $builder
             ->add('nomService')
             ->add('description')
+   
         ;
     }
 
