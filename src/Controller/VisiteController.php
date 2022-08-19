@@ -133,8 +133,8 @@ public function courrierProffesionnel(Request $request): Response
                     'nonregister',
                     "Erreur !!!"
                 );
+                }
             }
-        }
 
         }
         return $this->render('visitecrer/ajoutcourrierprofessionnel.html.twig', ['form' => $form->createView(),
