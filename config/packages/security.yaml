@@ -23,7 +23,6 @@ security:
                 authenticators:
                     - App\Security\LoginFormAuthentificatorAuthenticator
             logout:
-            logout:
                 path: app_logout
                 # where to redirect after logout
                 target: app_login
